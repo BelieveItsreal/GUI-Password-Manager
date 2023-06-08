@@ -39,16 +39,16 @@ def save_to_csv():
         is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered:\nEmail: {email}\nPassword: {password}\nIs it okay to save?")
         if is_ok:
             try:
-                with open("D:\\coding\\python_in_hole\\python code\\password gui\\password_data.json", mode='r') as file:
+                with open("password_data.json", mode='r') as file:
                     #reading old data
                     data = json.load(file)
             except FileNotFoundError:
                 #updating new data
-                with open("D:\\coding\\python_in_hole\\python code\\password gui\\password_data.json", mode='w') as file:
+                with open("password_data.json", mode='w') as file:
                     json.dump(new_data, file, indent=4)
             else:
                 data.update(new_data)
-                with open("D:\\coding\\python_in_hole\\python code\\password gui\\password_data.json", mode='w') as file:
+                with open("password_data.json", mode='w') as file:
                         # saving new data
                     json.dump(data, file, indent=4)
             finally:
@@ -57,7 +57,7 @@ def save_to_csv():
 # ---------------------------- FIND PASSWORD ------------------------------- #
 def find_password():
     website = website_entry.get()
-    with open("D:\\coding\\python_in_hole\\python code\\password gui\\password_data.json") as file:
+    with open("password_data.json") as file:
         data = json.load(file)
         if website in data:
             email = data[website]["email"]
@@ -73,7 +73,7 @@ window.title("Password Manager")
 window.config(padx=50, pady=50)
 
 canvas = Canvas(height=200, width=200)
-logo_img = PhotoImage(file="D:\\coding\\python_in_hole\\python code\\password gui\\logo.png")
+logo_img = PhotoImage(file="logo.png")
 canvas.create_image(100, 100, image=logo_img)
 canvas.grid(row=0, column=1)
 
